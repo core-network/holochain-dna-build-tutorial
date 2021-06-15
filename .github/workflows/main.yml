@@ -3,16 +3,32 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 120
+
+    strategy:
+      matrix:
+        os: [macos-10.15, macos-11, ubuntu-20.04]
+      fail-fast: false
 
     steps:
       - name: Fetch source code
         uses: actions/checkout@v2
 
+      - name: Setup Xcode version
+        if: ${{ runner.os == 'macOS' }}
+        uses: maxim-lobanov/setup-xcode@v1.2.3
+        with:
+          xcode-version: latest-stable
+
+      - name: Check macOS version
+        if: ${{ runner.os == 'macOS' }}
+        run: sw_vers
+
       - name: Set up nix
         uses: cachix/install-nix-action@v13
         with:
+          nix_path: nixpkgs=channel:nixos-unstable
           extra_nix_config: |
             substituters = https://cache.nixos.org/ https://cache.holo.host/
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= cache.holo.host-1:lNXIXtJgS9Iuw4Cu6X0HINLu9sTfcjEntnrgwMQIMcE= cache.holo.host-2:ZJCkX3AUYZ8soxTLfTb60g+F3MkWD7hkH9y8CgqwhDQ=
@@ -25,6 +41,10 @@ jobs:
           name: holochain
           # if an auth token is set up, nix will be cached to your cachix cache
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
+      - name: Install recent bash, and set as NIX_BUILD_SHELL # needed by macos, which has an older bash incompatible with nix
+        if: ${{ runner.os == 'macOS' }}
+        run: echo "NIX_BUILD_SHELL=$(nix-build -A bashInteractive '<nixpkgs>')/bin/bash" >> $GITHUB_ENV
 
       # - name: Inspect nix.conf
       #   run: cat ~/.config/nix/nix.conf
