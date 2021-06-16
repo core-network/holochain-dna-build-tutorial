@@ -1,13 +1,13 @@
 [package]
 name = "foo"
 version = "0.0.1"
-authors = [ "thedavidmeister", "thedavidmeister@gmail.com" ]
+authors = ["thedavidmeister", "thedavidmeister@gmail.com"]
 edition = "2018"
 
 [lib]
 name = "foo"
-crate-type = [ "cdylib", "rlib" ]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-hdk = "0.0.100"
-serde = "1"
+hdk = "0.0.101-alpha.0"
+serde = "1.0.123"
