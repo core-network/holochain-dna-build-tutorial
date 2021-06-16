@@ -19,19 +19,17 @@ jobs:
         uses: actions/cache@v2
         with:
           path: .cargo
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.toml') }}-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
-            ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.toml') }}
-            ${{ runner.os }}-cargo
+            ${{ runner.os }}-cargo-
 
       - name: Cargo Target Cache
         uses: actions/cache@v2
         with:
           path: target
-          key: ${{ runner.os }}-cargo-target-${{ hashFiles('**/Cargo.toml') }}-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ runner.os }}-cargo-target-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
-            ${{ runner.os }}-cargo-target-${{ hashFiles('**/Cargo.toml') }}
-            ${{ runner.os }}-cargo-target
+            ${{ runner.os }}-cargo-target-
 
       - name: Set up nix
         uses: cachix/install-nix-action@v13
