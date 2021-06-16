@@ -1,7 +1,7 @@
 SHELL    = bash
-WORK_DIR  = workdir
+WORK_DIR = workdir
 DNA_DIR  = $(WORK_DIR)/dna
-HAPP_DIR  = $(WORK_DIR)/happ
+HAPP_DIR = $(WORK_DIR)/happ
 DNA      = $(DNA_DIR)/demo-dna.dna
 HAPP     = $(HAPP_DIR)/demo-happ.happ
 WASM     = target/wasm32-unknown-unknown/release/wikinodes.wasm
@@ -30,7 +30,6 @@ $(DNA):		$(WASM) FORCE
 	@echo "Packaging DNA:"
 	@hc dna pack $(DNA_DIR) -o $(DNA)
 	@hc app pack $(HAPP_DIR) -o $(HAPP)
-	@ls -l $@
 
 # Recompile the target release WASM
 $(WASM): FORCE
@@ -58,4 +57,5 @@ clean:
 		tests/node_modules \
 		.cargo \
 		target \
-		$(DNA)
+		$(DNA) \
+		$(HAPP)
