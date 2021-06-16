@@ -9,5 +9,5 @@ name = "whoami"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-hdk = "0.0.101-alpha.0"
+hdk = { git = "https://github.com/holochain/holochain", rev = "7c81758a4644d4156aa7a56ab661d007e0a0f701", package = "hdk" }
 serde = "1.0.123"
