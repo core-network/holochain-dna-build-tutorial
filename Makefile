@@ -43,6 +43,9 @@ $(WASM): FORCE
 test: build
 	cd tests && npm install && npm test
 
+test-ci: build
+	cd tests && npm ci && npm test
+
 test-fast: build
 	cd tests && ( [ -d node_modules ] || npm install ) && npm test
 

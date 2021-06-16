@@ -74,5 +74,5 @@ jobs:
 
       # - run: make nix-clippy
 
-      - run: make nix-test
-        timeout-minutes: 5 # sometimes failing tryorama tests hang...
+      - run: make nix-test-ci
+        timeout-minutes: 10 # sometimes failing tryorama tests hang...
