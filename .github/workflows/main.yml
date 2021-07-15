@@ -46,7 +46,9 @@ jobs:
           # you can set up your own free cache via https://cachix.org
           name: holochain
           # if an auth token is set up, nix will be cached to your cachix cache
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - run: cat ~/.config/nix/nix.conf
 
       - name: Install recent bash, and set as NIX_BUILD_SHELL # needed by macos, which has an older bash incompatible with nix
         if: ${{ runner.os == 'macOS' }}
