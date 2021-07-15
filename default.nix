@@ -8,9 +8,9 @@ let
     holochainVersionId = "custom";
 
     holochainVersion = {
-     rev = "20d2570c36b9e8da087a565a1ed644562cc92136";  # current head of https://github.com/holochain/holochain/pull/829
-     sha256 = "1bfy9q7bg929p7kzz96g4r9lhmb10v2zyywycmr3ifi1jq60rd50";
-     cargoSha256 = "sha256:1gv2zhslraxiq8v5644mxb2d1sl0md6i79rsjppcf0gi7n6pd6zi";
+     rev = "0c283785ca98c78dbb2d27d7a3b8b417e4475ecb";  # current head of https://github.com/holochain/holochain/pull/829
+     sha256 = "18qd6q3ly2spa0bkajbzfj49zl047clj6k14pq6fv1mf7wbxvf7v";
+     cargoSha256 = "sha256:1xikr23lglh7629g8bdq52r2c20s1r0xdy90w2vlgpsrkq5zn69i";
      bins = {
        holochain = "holochain";
        hc = "hc";
